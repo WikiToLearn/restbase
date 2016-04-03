@@ -7,6 +7,9 @@ RUN npm install
 
 EXPOSE 7231
 
+RUN mkdir /db
+RUN chmod 777 /db
+
 ADD ./config.yaml /restbase/
 
 ADD ./kickstart.sh /

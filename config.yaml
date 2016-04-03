@@ -25,10 +25,10 @@ services:
                   action:
                     apiUriTemplate: http://de.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/de.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -41,10 +41,10 @@ services:
                   action:
                     apiUriTemplate: http://pt.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pt.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -57,10 +57,10 @@ services:
                   action:
                     apiUriTemplate: http://sv.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/sv.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -73,10 +73,10 @@ services:
                   action:
                     apiUriTemplate: http://meta.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/meta.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -89,10 +89,10 @@ services:
                   action:
                     apiUriTemplate: http://fr.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/fr.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -105,10 +105,10 @@ services:
                   action:
                     apiUriTemplate: http://pool.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pool.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -121,10 +121,10 @@ services:
                   action:
                     apiUriTemplate: http://it.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/it.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -137,10 +137,10 @@ services:
                   action:
                     apiUriTemplate: http://es.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/es.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -153,10 +153,10 @@ services:
                   action:
                     apiUriTemplate: http://en.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/en.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -169,10 +169,10 @@ services:
                   action:
                     apiUriTemplate: http://de.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/de.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -185,10 +185,10 @@ services:
                   action:
                     apiUriTemplate: http://pt.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pt.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -201,10 +201,10 @@ services:
                   action:
                     apiUriTemplate: http://sv.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/sv.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -217,10 +217,10 @@ services:
                   action:
                     apiUriTemplate: http://meta.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/meta.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -233,10 +233,10 @@ services:
                   action:
                     apiUriTemplate: http://fr.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/fr.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -249,10 +249,10 @@ services:
                   action:
                     apiUriTemplate: http://pool.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pool.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -265,10 +265,10 @@ services:
                   action:
                     apiUriTemplate: http://it.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/it.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -281,10 +281,10 @@ services:
                   action:
                     apiUriTemplate: http://es.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/es.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -297,10 +297,10 @@ services:
                   action:
                     apiUriTemplate: http://en.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/en.direct.wikitolearn.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -313,10 +313,10 @@ services:
                   action:
                     apiUriTemplate: http://de.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/de.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -329,10 +329,10 @@ services:
                   action:
                     apiUriTemplate: http://pt.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pt.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -345,10 +345,10 @@ services:
                   action:
                     apiUriTemplate: http://sv.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/sv.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -361,10 +361,10 @@ services:
                   action:
                     apiUriTemplate: http://meta.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/meta.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -377,10 +377,10 @@ services:
                   action:
                     apiUriTemplate: http://fr.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/fr.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -393,10 +393,10 @@ services:
                   action:
                     apiUriTemplate: http://pool.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pool.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -409,10 +409,10 @@ services:
                   action:
                     apiUriTemplate: http://it.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/it.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -425,10 +425,10 @@ services:
                   action:
                     apiUriTemplate: http://es.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/es.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -441,10 +441,10 @@ services:
                   action:
                     apiUriTemplate: http://en.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/en.wikitolearn.vodka.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -457,10 +457,10 @@ services:
                   action:
                     apiUriTemplate: http://de.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/de.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -473,10 +473,10 @@ services:
                   action:
                     apiUriTemplate: http://pt.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pt.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -489,10 +489,10 @@ services:
                   action:
                     apiUriTemplate: http://sv.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/sv.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -505,10 +505,10 @@ services:
                   action:
                     apiUriTemplate: http://meta.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/meta.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -521,10 +521,10 @@ services:
                   action:
                     apiUriTemplate: http://fr.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/fr.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -537,10 +537,10 @@ services:
                   action:
                     apiUriTemplate: http://pool.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pool.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -553,10 +553,10 @@ services:
                   action:
                     apiUriTemplate: http://it.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/it.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -569,10 +569,10 @@ services:
                   action:
                     apiUriTemplate: http://es.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/es.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -585,10 +585,10 @@ services:
                   action:
                     apiUriTemplate: http://en.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/en.tuttorotto.biz.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -601,10 +601,10 @@ services:
                   action:
                     apiUriTemplate: http://de.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/de.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -617,10 +617,10 @@ services:
                   action:
                     apiUriTemplate: http://pt.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pt.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -633,10 +633,10 @@ services:
                   action:
                     apiUriTemplate: http://sv.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/sv.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -649,10 +649,10 @@ services:
                   action:
                     apiUriTemplate: http://meta.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/meta.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -665,10 +665,10 @@ services:
                   action:
                     apiUriTemplate: http://fr.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/fr.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -681,10 +681,10 @@ services:
                   action:
                     apiUriTemplate: http://pool.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pool.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -697,10 +697,10 @@ services:
                   action:
                     apiUriTemplate: http://it.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/it.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -713,10 +713,10 @@ services:
                   action:
                     apiUriTemplate: http://es.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/es.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -729,10 +729,10 @@ services:
                   action:
                     apiUriTemplate: http://en.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/en.tuttorotto.eu.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -745,10 +745,10 @@ services:
                   action:
                     apiUriTemplate: http://de.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/de.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -761,10 +761,10 @@ services:
                   action:
                     apiUriTemplate: http://pt.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pt.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -777,10 +777,10 @@ services:
                   action:
                     apiUriTemplate: http://sv.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/sv.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -793,10 +793,10 @@ services:
                   action:
                     apiUriTemplate: http://meta.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/meta.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -809,10 +809,10 @@ services:
                   action:
                     apiUriTemplate: http://fr.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/fr.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -825,10 +825,10 @@ services:
                   action:
                     apiUriTemplate: http://pool.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pool.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -841,10 +841,10 @@ services:
                   action:
                     apiUriTemplate: http://it.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/it.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -857,10 +857,10 @@ services:
                   action:
                     apiUriTemplate: http://es.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/es.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -873,10 +873,10 @@ services:
                   action:
                     apiUriTemplate: http://en.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/en.tuttorotto.org.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -889,10 +889,10 @@ services:
                   action:
                     apiUriTemplate: http://de.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/de.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -905,10 +905,10 @@ services:
                   action:
                     apiUriTemplate: http://pt.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pt.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -921,10 +921,10 @@ services:
                   action:
                     apiUriTemplate: http://sv.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/sv.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -937,10 +937,10 @@ services:
                   action:
                     apiUriTemplate: http://meta.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/meta.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -953,10 +953,10 @@ services:
                   action:
                     apiUriTemplate: http://fr.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/fr.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -969,10 +969,10 @@ services:
                   action:
                     apiUriTemplate: http://pool.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/pool.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -985,10 +985,10 @@ services:
                   action:
                     apiUriTemplate: http://it.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/it.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -1001,10 +1001,10 @@ services:
                   action:
                     apiUriTemplate: http://es.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/es.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
@@ -1017,10 +1017,10 @@ services:
                   action:
                     apiUriTemplate: http://en.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/en.tuttorotto.it.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10

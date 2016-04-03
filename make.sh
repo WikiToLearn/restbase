@@ -37,10 +37,10 @@ cat <<EOF
                   action:
                     apiUriTemplate: http://$lang.$domain/api.php
                   parsoid:
-                    host: http://parsoid.$domain:8000
+                    host: http://parsoid:8000
                   table:
                     backend: sqlite
-                    dbname: db.sqlite3
+                    dbname: /db/$lang.$domain.sqlite3
                     pool_idle_timeout: 20000
                     retry_delay: 250
                     retry_limit: 10
