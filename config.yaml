@@ -17,15 +17,15 @@ services:
               - pattern: http://parsoid.tuttorotto.biz
                 forward_headers: true
               - pattern: /^https?:\/\//
-
+        paths:
           /{domain:de.wikitolearn.org}:
             x-modules:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://de.wikitolearn.org//api.php
+                    apiUriTemplate: http://de.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -39,9 +39,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pt.wikitolearn.org//api.php
+                    apiUriTemplate: http://pt.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -55,9 +55,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://sv.wikitolearn.org//api.php
+                    apiUriTemplate: http://sv.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -71,9 +71,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://meta.wikitolearn.org//api.php
+                    apiUriTemplate: http://meta.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -87,9 +87,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://fr.wikitolearn.org//api.php
+                    apiUriTemplate: http://fr.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -103,9 +103,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pool.wikitolearn.org//api.php
+                    apiUriTemplate: http://pool.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -119,9 +119,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://it.wikitolearn.org//api.php
+                    apiUriTemplate: http://it.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -135,9 +135,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://es.wikitolearn.org//api.php
+                    apiUriTemplate: http://es.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -151,9 +151,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://en.wikitolearn.org//api.php
+                    apiUriTemplate: http://en.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.org/
+                    host: http://parsoid.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -167,9 +167,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://de.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://de.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -183,9 +183,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pt.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://pt.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -199,9 +199,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://sv.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://sv.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -215,9 +215,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://meta.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://meta.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -231,9 +231,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://fr.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://fr.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -247,9 +247,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pool.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://pool.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -263,9 +263,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://it.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://it.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -279,9 +279,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://es.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://es.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -295,9 +295,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://en.direct.wikitolearn.org//api.php
+                    apiUriTemplate: http://en.direct.wikitolearn.org/api.php
                   parsoid:
-                    host: http://parsoid.direct.wikitolearn.org/
+                    host: http://parsoid.direct.wikitolearn.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -311,9 +311,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://de.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://de.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -327,9 +327,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pt.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://pt.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -343,9 +343,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://sv.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://sv.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -359,9 +359,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://meta.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://meta.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -375,9 +375,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://fr.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://fr.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -391,9 +391,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pool.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://pool.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -407,9 +407,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://it.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://it.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -423,9 +423,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://es.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://es.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -439,9 +439,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://en.wikitolearn.vodka//api.php
+                    apiUriTemplate: http://en.wikitolearn.vodka/api.php
                   parsoid:
-                    host: http://parsoid.wikitolearn.vodka/
+                    host: http://parsoid.wikitolearn.vodka:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -455,9 +455,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://de.tuttorotto.biz//api.php
+                    apiUriTemplate: http://de.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -471,9 +471,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pt.tuttorotto.biz//api.php
+                    apiUriTemplate: http://pt.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -487,9 +487,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://sv.tuttorotto.biz//api.php
+                    apiUriTemplate: http://sv.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -503,9 +503,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://meta.tuttorotto.biz//api.php
+                    apiUriTemplate: http://meta.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -519,9 +519,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://fr.tuttorotto.biz//api.php
+                    apiUriTemplate: http://fr.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -535,9 +535,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pool.tuttorotto.biz//api.php
+                    apiUriTemplate: http://pool.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -551,9 +551,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://it.tuttorotto.biz//api.php
+                    apiUriTemplate: http://it.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -567,9 +567,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://es.tuttorotto.biz//api.php
+                    apiUriTemplate: http://es.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -583,9 +583,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://en.tuttorotto.biz//api.php
+                    apiUriTemplate: http://en.tuttorotto.biz/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.biz/
+                    host: http://parsoid.tuttorotto.biz:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -599,9 +599,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://de.tuttorotto.eu//api.php
+                    apiUriTemplate: http://de.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -615,9 +615,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pt.tuttorotto.eu//api.php
+                    apiUriTemplate: http://pt.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -631,9 +631,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://sv.tuttorotto.eu//api.php
+                    apiUriTemplate: http://sv.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -647,9 +647,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://meta.tuttorotto.eu//api.php
+                    apiUriTemplate: http://meta.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -663,9 +663,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://fr.tuttorotto.eu//api.php
+                    apiUriTemplate: http://fr.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -679,9 +679,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pool.tuttorotto.eu//api.php
+                    apiUriTemplate: http://pool.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -695,9 +695,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://it.tuttorotto.eu//api.php
+                    apiUriTemplate: http://it.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -711,9 +711,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://es.tuttorotto.eu//api.php
+                    apiUriTemplate: http://es.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -727,9 +727,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://en.tuttorotto.eu//api.php
+                    apiUriTemplate: http://en.tuttorotto.eu/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.eu/
+                    host: http://parsoid.tuttorotto.eu:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -743,9 +743,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://de.tuttorotto.org//api.php
+                    apiUriTemplate: http://de.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -759,9 +759,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pt.tuttorotto.org//api.php
+                    apiUriTemplate: http://pt.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -775,9 +775,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://sv.tuttorotto.org//api.php
+                    apiUriTemplate: http://sv.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -791,9 +791,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://meta.tuttorotto.org//api.php
+                    apiUriTemplate: http://meta.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -807,9 +807,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://fr.tuttorotto.org//api.php
+                    apiUriTemplate: http://fr.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -823,9 +823,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pool.tuttorotto.org//api.php
+                    apiUriTemplate: http://pool.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -839,9 +839,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://it.tuttorotto.org//api.php
+                    apiUriTemplate: http://it.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -855,9 +855,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://es.tuttorotto.org//api.php
+                    apiUriTemplate: http://es.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -871,9 +871,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://en.tuttorotto.org//api.php
+                    apiUriTemplate: http://en.tuttorotto.org/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.org/
+                    host: http://parsoid.tuttorotto.org:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -887,9 +887,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://de.tuttorotto.it//api.php
+                    apiUriTemplate: http://de.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -903,9 +903,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pt.tuttorotto.it//api.php
+                    apiUriTemplate: http://pt.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -919,9 +919,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://sv.tuttorotto.it//api.php
+                    apiUriTemplate: http://sv.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -935,9 +935,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://meta.tuttorotto.it//api.php
+                    apiUriTemplate: http://meta.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -951,9 +951,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://fr.tuttorotto.it//api.php
+                    apiUriTemplate: http://fr.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -967,9 +967,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://pool.tuttorotto.it//api.php
+                    apiUriTemplate: http://pool.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -983,9 +983,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://it.tuttorotto.it//api.php
+                    apiUriTemplate: http://it.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -999,9 +999,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://es.tuttorotto.it//api.php
+                    apiUriTemplate: http://es.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
@@ -1015,9 +1015,9 @@ services:
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://en.tuttorotto.it//api.php
+                    apiUriTemplate: http://en.tuttorotto.it/api.php
                   parsoid:
-                    host: http://parsoid.tuttorotto.it/
+                    host: http://parsoid.tuttorotto.it:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3

@@ -25,7 +25,7 @@ services:
               - pattern: http://parsoid.tuttorotto.biz
                 forward_headers: true
               - pattern: /^https?:\/\//
-
+        paths:
 EOF
  for domain in $domains ; do
   for lang in $langs ; do
@@ -35,9 +35,9 @@ cat <<EOF
               - path: projects/example.yaml
                 options:
                   action:
-                    apiUriTemplate: http://$lang.$domain//api.php
+                    apiUriTemplate: http://$lang.$domain/api.php
                   parsoid:
-                    host: http://parsoid.$domain/
+                    host: http://parsoid.$domain:8000
                   table:
                     backend: sqlite
                     dbname: db.sqlite3
