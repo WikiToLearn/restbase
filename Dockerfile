@@ -1,6 +1,14 @@
 FROM node:5
-RUN git clone https://github.com/wikimedia/restbase.git && cd restbase && git checkout v0.11.3 && rm -Rfv .git/
+RUN git clone https://github.com/wikimedia/restbase.git && cd restbase && git checkout v0.12.1 && rm -Rfv .git/
+
 WORKDIR restbase
+
 RUN npm install
-RUN cp config.example.yaml config.yaml
-CMD node server
+
+EXPOSE 7231
+
+ADD ./config.yaml /restbase/
+
+ADD ./kickstart.sh /
+RUN chmod +x /kickstart.sh
+CMD /kickstart.sh

@@ -1,0 +1,1048 @@
+services:
+  - name: restbase
+    module: hyperswitch
+    conf:
+      port: 7231
+      salt: secret
+      default_page_size: 125
+      user_agent: RESTBase
+      spec:
+        x-sub-request-filters:
+          - type: default
+            name: http
+            options:
+            allow:
+              - pattern: http://it.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://parsoid.tuttorotto.biz
+                forward_headers: true
+              - pattern: /^https?:\/\//
+
+          /{domain:de.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://de.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pt.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pt.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:sv.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://sv.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:meta.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://meta.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:fr.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://fr.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pool.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pool.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:it.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://it.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:es.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://es.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:en.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://en.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:de.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://de.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pt.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pt.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:sv.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://sv.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:meta.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://meta.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:fr.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://fr.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pool.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pool.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:it.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://it.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:es.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://es.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:en.direct.wikitolearn.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://en.direct.wikitolearn.org//api.php
+                  parsoid:
+                    host: http://parsoid.direct.wikitolearn.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:de.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://de.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pt.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pt.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:sv.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://sv.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:meta.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://meta.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:fr.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://fr.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pool.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pool.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:it.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://it.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:es.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://es.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:en.wikitolearn.vodka}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://en.wikitolearn.vodka//api.php
+                  parsoid:
+                    host: http://parsoid.wikitolearn.vodka/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:de.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://de.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pt.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pt.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:sv.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://sv.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:meta.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://meta.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:fr.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://fr.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pool.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pool.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:it.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://it.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:es.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://es.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:en.tuttorotto.biz}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://en.tuttorotto.biz//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.biz/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:de.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://de.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pt.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pt.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:sv.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://sv.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:meta.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://meta.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:fr.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://fr.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pool.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pool.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:it.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://it.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:es.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://es.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:en.tuttorotto.eu}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://en.tuttorotto.eu//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.eu/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:de.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://de.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pt.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pt.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:sv.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://sv.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:meta.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://meta.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:fr.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://fr.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pool.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pool.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:it.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://it.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:es.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://es.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:en.tuttorotto.org}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://en.tuttorotto.org//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.org/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:de.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://de.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pt.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pt.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:sv.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://sv.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:meta.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://meta.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:fr.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://fr.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:pool.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://pool.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:it.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://it.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:es.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://es.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+          /{domain:en.tuttorotto.it}:
+            x-modules:
+              - path: projects/example.yaml
+                options:
+                  action:
+                    apiUriTemplate: http://en.tuttorotto.it//api.php
+                  parsoid:
+                    host: http://parsoid.tuttorotto.it/
+                  table:
+                    backend: sqlite
+                    dbname: db.sqlite3
+                    pool_idle_timeout: 20000
+                    retry_delay: 250
+                    retry_limit: 10
+                    show_sql: false
+
+
+#                   backend: cassandra
+#                   hosts: [cassandra-db]
+#                   keyspace: system
+#                   username: cassandra
+#                   password: cassandra
+#                   defaultConsistency: one
+#                   dbname: db.sqlite3
+#                   pool_idle_timeout: 20000
+#                   retry_delay: 250
+#                   retry_limit: 10
+#                   show_sql: false
+
+info:
+  name: restbase
+
+logging:
+  name: restbase
+  level: info
+
