@@ -12,9 +12,136 @@ services:
             name: http
             options:
             allow:
+              - pattern: http://de.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://pt.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://sv.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://meta.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://fr.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://pool.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://it.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://es.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://en.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://de.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://pt.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://sv.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://meta.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://fr.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://pool.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://it.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://es.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://en.direct.wikitolearn.org/api.php
+                forward_headers: true
+              - pattern: http://de.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://pt.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://sv.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://meta.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://fr.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://pool.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://it.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://es.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://en.wikitolearn.vodka/api.php
+                forward_headers: true
+              - pattern: http://de.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://pt.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://sv.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://meta.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://fr.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://pool.tuttorotto.biz/api.php
+                forward_headers: true
               - pattern: http://it.tuttorotto.biz/api.php
                 forward_headers: true
-              - pattern: http://parsoid.tuttorotto.biz
+              - pattern: http://es.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://en.tuttorotto.biz/api.php
+                forward_headers: true
+              - pattern: http://de.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://pt.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://sv.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://meta.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://fr.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://pool.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://it.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://es.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://en.tuttorotto.eu/api.php
+                forward_headers: true
+              - pattern: http://de.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://pt.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://sv.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://meta.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://fr.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://pool.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://it.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://es.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://en.tuttorotto.org/api.php
+                forward_headers: true
+              - pattern: http://de.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://pt.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://sv.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://meta.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://fr.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://pool.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://it.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://es.tuttorotto.it/api.php
+                forward_headers: true
+              - pattern: http://en.tuttorotto.it/api.php
+                forward_headers: true
+
+              - pattern: http://mathoid:10044
+                forward_headers: true
+              - pattern: http://parsoid:8000
                 forward_headers: true
               - pattern: /^https?:\/\//
         paths:
@@ -26,6 +153,8 @@ services:
                     apiUriTemplate: http://de.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/de.wikitolearn.org.sqlite3
@@ -42,6 +171,8 @@ services:
                     apiUriTemplate: http://pt.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pt.wikitolearn.org.sqlite3
@@ -58,6 +189,8 @@ services:
                     apiUriTemplate: http://sv.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/sv.wikitolearn.org.sqlite3
@@ -74,6 +207,8 @@ services:
                     apiUriTemplate: http://meta.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/meta.wikitolearn.org.sqlite3
@@ -90,6 +225,8 @@ services:
                     apiUriTemplate: http://fr.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/fr.wikitolearn.org.sqlite3
@@ -106,6 +243,8 @@ services:
                     apiUriTemplate: http://pool.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pool.wikitolearn.org.sqlite3
@@ -122,6 +261,8 @@ services:
                     apiUriTemplate: http://it.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/it.wikitolearn.org.sqlite3
@@ -138,6 +279,8 @@ services:
                     apiUriTemplate: http://es.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/es.wikitolearn.org.sqlite3
@@ -154,6 +297,8 @@ services:
                     apiUriTemplate: http://en.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/en.wikitolearn.org.sqlite3
@@ -170,6 +315,8 @@ services:
                     apiUriTemplate: http://de.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/de.direct.wikitolearn.org.sqlite3
@@ -186,6 +333,8 @@ services:
                     apiUriTemplate: http://pt.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pt.direct.wikitolearn.org.sqlite3
@@ -202,6 +351,8 @@ services:
                     apiUriTemplate: http://sv.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/sv.direct.wikitolearn.org.sqlite3
@@ -218,6 +369,8 @@ services:
                     apiUriTemplate: http://meta.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/meta.direct.wikitolearn.org.sqlite3
@@ -234,6 +387,8 @@ services:
                     apiUriTemplate: http://fr.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/fr.direct.wikitolearn.org.sqlite3
@@ -250,6 +405,8 @@ services:
                     apiUriTemplate: http://pool.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pool.direct.wikitolearn.org.sqlite3
@@ -266,6 +423,8 @@ services:
                     apiUriTemplate: http://it.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/it.direct.wikitolearn.org.sqlite3
@@ -282,6 +441,8 @@ services:
                     apiUriTemplate: http://es.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/es.direct.wikitolearn.org.sqlite3
@@ -298,6 +459,8 @@ services:
                     apiUriTemplate: http://en.direct.wikitolearn.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/en.direct.wikitolearn.org.sqlite3
@@ -314,6 +477,8 @@ services:
                     apiUriTemplate: http://de.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/de.wikitolearn.vodka.sqlite3
@@ -330,6 +495,8 @@ services:
                     apiUriTemplate: http://pt.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pt.wikitolearn.vodka.sqlite3
@@ -346,6 +513,8 @@ services:
                     apiUriTemplate: http://sv.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/sv.wikitolearn.vodka.sqlite3
@@ -362,6 +531,8 @@ services:
                     apiUriTemplate: http://meta.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/meta.wikitolearn.vodka.sqlite3
@@ -378,6 +549,8 @@ services:
                     apiUriTemplate: http://fr.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/fr.wikitolearn.vodka.sqlite3
@@ -394,6 +567,8 @@ services:
                     apiUriTemplate: http://pool.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pool.wikitolearn.vodka.sqlite3
@@ -410,6 +585,8 @@ services:
                     apiUriTemplate: http://it.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/it.wikitolearn.vodka.sqlite3
@@ -426,6 +603,8 @@ services:
                     apiUriTemplate: http://es.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/es.wikitolearn.vodka.sqlite3
@@ -442,6 +621,8 @@ services:
                     apiUriTemplate: http://en.wikitolearn.vodka/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/en.wikitolearn.vodka.sqlite3
@@ -458,6 +639,8 @@ services:
                     apiUriTemplate: http://de.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/de.tuttorotto.biz.sqlite3
@@ -474,6 +657,8 @@ services:
                     apiUriTemplate: http://pt.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pt.tuttorotto.biz.sqlite3
@@ -490,6 +675,8 @@ services:
                     apiUriTemplate: http://sv.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/sv.tuttorotto.biz.sqlite3
@@ -506,6 +693,8 @@ services:
                     apiUriTemplate: http://meta.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/meta.tuttorotto.biz.sqlite3
@@ -522,6 +711,8 @@ services:
                     apiUriTemplate: http://fr.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/fr.tuttorotto.biz.sqlite3
@@ -538,6 +729,8 @@ services:
                     apiUriTemplate: http://pool.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pool.tuttorotto.biz.sqlite3
@@ -554,6 +747,8 @@ services:
                     apiUriTemplate: http://it.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/it.tuttorotto.biz.sqlite3
@@ -570,6 +765,8 @@ services:
                     apiUriTemplate: http://es.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/es.tuttorotto.biz.sqlite3
@@ -586,6 +783,8 @@ services:
                     apiUriTemplate: http://en.tuttorotto.biz/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/en.tuttorotto.biz.sqlite3
@@ -602,6 +801,8 @@ services:
                     apiUriTemplate: http://de.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/de.tuttorotto.eu.sqlite3
@@ -618,6 +819,8 @@ services:
                     apiUriTemplate: http://pt.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pt.tuttorotto.eu.sqlite3
@@ -634,6 +837,8 @@ services:
                     apiUriTemplate: http://sv.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/sv.tuttorotto.eu.sqlite3
@@ -650,6 +855,8 @@ services:
                     apiUriTemplate: http://meta.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/meta.tuttorotto.eu.sqlite3
@@ -666,6 +873,8 @@ services:
                     apiUriTemplate: http://fr.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/fr.tuttorotto.eu.sqlite3
@@ -682,6 +891,8 @@ services:
                     apiUriTemplate: http://pool.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pool.tuttorotto.eu.sqlite3
@@ -698,6 +909,8 @@ services:
                     apiUriTemplate: http://it.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/it.tuttorotto.eu.sqlite3
@@ -714,6 +927,8 @@ services:
                     apiUriTemplate: http://es.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/es.tuttorotto.eu.sqlite3
@@ -730,6 +945,8 @@ services:
                     apiUriTemplate: http://en.tuttorotto.eu/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/en.tuttorotto.eu.sqlite3
@@ -746,6 +963,8 @@ services:
                     apiUriTemplate: http://de.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/de.tuttorotto.org.sqlite3
@@ -762,6 +981,8 @@ services:
                     apiUriTemplate: http://pt.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pt.tuttorotto.org.sqlite3
@@ -778,6 +999,8 @@ services:
                     apiUriTemplate: http://sv.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/sv.tuttorotto.org.sqlite3
@@ -794,6 +1017,8 @@ services:
                     apiUriTemplate: http://meta.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/meta.tuttorotto.org.sqlite3
@@ -810,6 +1035,8 @@ services:
                     apiUriTemplate: http://fr.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/fr.tuttorotto.org.sqlite3
@@ -826,6 +1053,8 @@ services:
                     apiUriTemplate: http://pool.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pool.tuttorotto.org.sqlite3
@@ -842,6 +1071,8 @@ services:
                     apiUriTemplate: http://it.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/it.tuttorotto.org.sqlite3
@@ -858,6 +1089,8 @@ services:
                     apiUriTemplate: http://es.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/es.tuttorotto.org.sqlite3
@@ -874,6 +1107,8 @@ services:
                     apiUriTemplate: http://en.tuttorotto.org/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/en.tuttorotto.org.sqlite3
@@ -890,6 +1125,8 @@ services:
                     apiUriTemplate: http://de.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/de.tuttorotto.it.sqlite3
@@ -906,6 +1143,8 @@ services:
                     apiUriTemplate: http://pt.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pt.tuttorotto.it.sqlite3
@@ -922,6 +1161,8 @@ services:
                     apiUriTemplate: http://sv.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/sv.tuttorotto.it.sqlite3
@@ -938,6 +1179,8 @@ services:
                     apiUriTemplate: http://meta.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/meta.tuttorotto.it.sqlite3
@@ -954,6 +1197,8 @@ services:
                     apiUriTemplate: http://fr.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/fr.tuttorotto.it.sqlite3
@@ -970,6 +1215,8 @@ services:
                     apiUriTemplate: http://pool.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/pool.tuttorotto.it.sqlite3
@@ -986,6 +1233,8 @@ services:
                     apiUriTemplate: http://it.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/it.tuttorotto.it.sqlite3
@@ -1002,6 +1251,8 @@ services:
                     apiUriTemplate: http://es.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/es.tuttorotto.it.sqlite3
@@ -1018,6 +1269,8 @@ services:
                     apiUriTemplate: http://en.tuttorotto.it/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/en.tuttorotto.it.sqlite3

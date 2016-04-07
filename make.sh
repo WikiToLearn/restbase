@@ -20,9 +20,20 @@ services:
             name: http
             options:
             allow:
-              - pattern: http://it.tuttorotto.biz/api.php
+EOF
+ for domain in $domains ; do
+  for lang in $langs ; do
+cat <<EOF
+              - pattern: http://$lang.$domain/api.php
                 forward_headers: true
-              - pattern: http://parsoid.tuttorotto.biz
+EOF
+  done
+ done
+cat <<EOF
+
+              - pattern: http://mathoid:10044
+                forward_headers: true
+              - pattern: http://parsoid:8000
                 forward_headers: true
               - pattern: /^https?:\/\//
         paths:
@@ -38,6 +49,8 @@ cat <<EOF
                     apiUriTemplate: http://$lang.$domain/api.php
                   parsoid:
                     host: http://parsoid:8000
+                  mathoid:
+                    host: http://mathoid:10044
                   table:
                     backend: sqlite
                     dbname: /db/$lang.$domain.sqlite3
