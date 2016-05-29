@@ -1,0 +1,32 @@
+diff --git a/v1/mathoid.yaml b/v1/mathoid.yaml
+index 3f0ec7f..80e7b15 100644
+--- a/v1/mathoid.yaml
++++ b/v1/mathoid.yaml
+@@ -86,7 +86,6 @@ paths:
+       produces:
+         - image/svg+xml
+         - application/mathml+xml
+-        - image/png
+       parameters:
+         - name: format
+           in: path
+@@ -96,7 +95,6 @@ paths:
+           enum:
+             - svg
+             - mml
+-            - png
+         - name: hash
+           in: path
+           description: The hash string of the previous POST data
+@@ -125,11 +123,6 @@ paths:
+             body:
+               keyType: string
+               valueType: string
+-        - init_png:
+-            uri: /wikimedia.org/sys/key_value/mathoid.png
+-            body:
+-              keyType: string
+-              valueType: blob
+       x-request-handler:
+         - check_storage:
+             request:

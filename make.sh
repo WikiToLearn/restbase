@@ -16,7 +16,7 @@ default_project: &default_project
       options: &default_options
         table:
           backend: sqlite
-          dbname: "{{'/db/{domain}.sqlite3'}}"
+          dbname: /db/domain.sqlite3
           pool_idle_timeout: 20000
           retry_delay: 250
           retry_limit: 10

@@ -14,6 +14,12 @@ RUN chmod 777 /db
 ADD ./config.yaml /restbase/
 ADD ./wikitolearn.yaml /restbase/projects/
 
+
+
 ADD ./kickstart.sh /
 RUN chmod +x /kickstart.sh
 CMD /kickstart.sh
+
+
+ADD restbase.patch /tmp/
+RUN sha256sum v1/mathoid.yaml && git apply < /tmp/restbase.patch && sha256sum v1/mathoid.yaml
