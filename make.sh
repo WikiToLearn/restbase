@@ -16,13 +16,13 @@ default_project: &default_project
       options: &default_options
         table:
           backend: sqlite
-          dbname: /db/db.sqlite3
+          dbname: "{{'/db/{domain}.sqlite3'}}"
           pool_idle_timeout: 20000
           retry_delay: 250
           retry_limit: 10
           show_sql: false
         action:
-          apiUriTemplate: "{{'https://{domain}/w/api.php'}}"
+          apiUriTemplate: "{{'http://{domain}/api.php'}}"
         graphoid:
           host: http://graphoid.wikimedia.org
         parsoid:
@@ -53,7 +53,7 @@ spec_root: &spec_root
       name: http
       options:
         allow:
-          - pattern: /^https?:\/\/[a-zA-Z0-9\.]+\/api\.php/
+          - pattern: /^http?:\/\/[a-zA-Z0-9\.]+\/api\.php/
             forward_headers: true
           - pattern: http://mathoid:10044
             forward_headers: true
@@ -102,11 +102,8 @@ services:
 
 logging:
   name: restbase
-  level: info
-  #streams:
-  #- type: gelf
-  #  host: <%= @logstash_host %>
-  #  port: <%= @logstash_port %>
+  level: debug
+
 EOF
 
 } > config.yaml
