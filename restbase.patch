@@ -1,3 +1,31 @@
+diff --git a/sys/mathoid.js b/sys/mathoid.js
+index e2b1852..e94453e 100644
+--- a/sys/mathoid.js
++++ b/sys/mathoid.js
+@@ -7,7 +7,7 @@ var URI = HyperSwitch.URI;
+ var HTTPError = HyperSwitch.HTTPError;
+ 
+ 
+-var FORMATS = ['mml', 'svg', 'png'];
++var FORMATS = ['mml', 'svg'];
+ 
+ 
+ function MathoidService(options) {
+@@ -131,12 +131,14 @@ MathoidService.prototype._storeRenders = function(hyper, domain, hash, completeB
+                 completeBody[format].headers, { 'x-resource-location': hash }),
+             body: completeBody[format].body
+         };
++/*
+         if (format === 'png' && reqObj.body && reqObj.body.type === 'Buffer') {
+             // for png, we need to convert the encoded data manually
+             // because we are receiving it wrapped inside a JSON
+             reqObj.body = new Buffer(reqObj.body.data);
+             completeBody[format].body = reqObj.body;
+         }
++*/
+         // store the emit Promise
+         reqs[idx] = hyper.put(reqObj);
+     }
 diff --git a/v1/mathoid.yaml b/v1/mathoid.yaml
 index 3f0ec7f..80e7b15 100644
 --- a/v1/mathoid.yaml

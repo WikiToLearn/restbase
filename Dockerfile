@@ -16,6 +16,7 @@ ADD ./wikitolearn.yaml /restbase/projects/
 
 
 
+
 ADD ./kickstart.sh /
 RUN chmod +x /kickstart.sh
 CMD /kickstart.sh
