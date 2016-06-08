@@ -4,14 +4,13 @@ RUN git clone https://github.com/wikimedia/restbase.git && cd restbase && git ch
 
 WORKDIR restbase
 
-RUN npm install
+RUN npm install && rm -Rf /tmp/npm-* /root/.npm/
 
 EXPOSE 7231
 
 RUN mkdir /db
 RUN chmod 777 /db
 
-ADD ./config.yaml /restbase/
 ADD ./wikitolearn.yaml /restbase/projects/
 
 

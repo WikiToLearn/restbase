@@ -1,2 +1,4 @@
 #!/bin/bash
-docker build -t wikitolearn/restbase:0.1.5.2 .
+cd $(dirname "$(readlink -f $0)")
+docker build -t wikitolearn/restbase:0.1.5.4 .
+
