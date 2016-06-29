@@ -1,5 +1,5 @@
 diff --git a/sys/mathoid.js b/sys/mathoid.js
-index e2b1852..e94453e 100644
+index ff99830..e94453e 100644
 --- a/sys/mathoid.js
 +++ b/sys/mathoid.js
 @@ -7,7 +7,7 @@ var URI = HyperSwitch.URI;
@@ -11,7 +11,84 @@ index e2b1852..e94453e 100644
  
  
  function MathoidService(options) {
-@@ -131,12 +131,14 @@ MathoidService.prototype._storeRenders = function(hyper, domain, hash, completeB
+@@ -17,58 +17,6 @@ function MathoidService(options) {
+ }
+ 
+ 
+-MathoidService.prototype._invalidateCache = function(hyper, hash) {
+-
+-    var routes = [];
+-    var uri = '//wikimedia.org/api/rest_v1/media/math/';
+-
+-    routes.push(uri + 'formula/' + hash);
+-
+-    FORMATS.forEach(function(fmt) {
+-        routes.push(uri + 'render/' + fmt + '/' + hash);
+-    });
+-
+-    return hyper.post({
+-        uri: new URI(['wikimedia.org', 'sys', 'events', '']),
+-        body: routes.map(function(route) {
+-            return { meta: { uri: route } };
+-        })
+-    }).catch(function(e) {
+-        hyper.log('warn/bg-updates', e);
+-    });
+-
+-};
+-
+-MathoidService.prototype.getFormula = function(hyper, req) {
+-
+-    var rp = req.params;
+-    var hash = rp.hash;
+-
+-    return hyper.get({
+-        uri: new URI([rp.domain, 'sys', 'post_data', 'mathoid.input', hash])
+-    }).then(function(res) {
+-        res.headers['x-resource-location'] = hash;
+-        return res;
+-    }).catch({ status: 404 }, function(err) {
+-        // let's try to find an indirection
+-        return hyper.get({
+-            uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table', hash])
+-        }).then(function(hashRes) {
+-            // we have a normalised version of the formula
+-            hash = hashRes.body;
+-            // grab that version from storage
+-            return hyper.get({
+-                uri: new URI([rp.domain, 'sys', 'post_data', 'mathoid.input', hash])
+-            }).then(function(res) {
+-                res.headers['x-resource-location'] = hash;
+-                return res;
+-            });
+-        });
+-    });
+-
+-};
+-
+-
+ MathoidService.prototype.checkInput = function(hyper, req) {
+ 
+     var self = this;
+@@ -130,8 +78,7 @@ MathoidService.prototype.checkInput = function(hyper, req) {
+             // add the indirection to the hash table if the hashes don't match
+             if (hash !== origHash) {
+                 indirectionP = hyper.put({
+-                    uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table',
+-                        origHash]),
++                    uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table', origHash]),
+                     headers: { 'content-type': 'text/plain' },
+                     body: hash
+                 });
+@@ -149,7 +96,6 @@ MathoidService.prototype.checkInput = function(hyper, req) {
+                     body: checkRes.body
+                 }),
+                 indirectionP,
+-                self._invalidateCache.bind(self, hyper, hash),
+                 function() {
+                     return checkRes;
+                 }
+@@ -185,19 +131,18 @@ MathoidService.prototype._storeRenders = function(hyper, domain, hash, completeB
                  completeBody[format].headers, { 'x-resource-location': hash }),
              body: completeBody[format].body
          };
@@ -26,11 +103,81 @@ index e2b1852..e94453e 100644
          // store the emit Promise
          reqs[idx] = hyper.put(reqObj);
      }
+ 
+-    // invalidate the cache
+-    reqs.push(this._invalidateCache(hyper, hash));
+-
+     // now do them all
+     return P.all(reqs).then(function() { return completeBody; });
+ 
+@@ -236,11 +181,6 @@ module.exports = function(options) {
+     return {
+         spec: {
+             paths: {
+-                '/formula/{hash}': {
+-                    get: {
+-                        operationId: 'getFormula'
+-                    }
+-                },
+                 '/check/{type}': {
+                     post: {
+                         operationId: 'checkInput'
+@@ -254,7 +194,6 @@ module.exports = function(options) {
+             }
+         },
+         operations: {
+-            getFormula: mathoidSrv.getFormula.bind(mathoidSrv),
+             checkInput: mathoidSrv.checkInput.bind(mathoidSrv),
+             requestAndStore: mathoidSrv.requestAndStore.bind(mathoidSrv)
+         },
 diff --git a/v1/mathoid.yaml b/v1/mathoid.yaml
-index 3f0ec7f..80e7b15 100644
+index ea6a9f8..80e7b15 100644
 --- a/v1/mathoid.yaml
 +++ b/v1/mathoid.yaml
-@@ -86,7 +86,6 @@ paths:
+@@ -71,42 +71,6 @@ paths:
+               headers: '{{ request.headers }}'
+               body: '{{ request.body }}'
+ 
+-  /math/formula/{hash}:
+-    get:
+-      tags: ['Math']
+-      summary: Get a previously-stored formula
+-      description: |
+-        Returns the previously-stored formula via `/media/math/check/{type}` for
+-        the given hash.
+-
+-        Stability: [unstable](https://www.mediawiki.org/wiki/API_versioning#unstable).
+-      produces:
+-        - application/json
+-      parameters:
+-        - name: hash
+-          in: path
+-          description: The hash string of the previous POST data
+-          type: string
+-          required: true
+-      responses:
+-        '200':
+-          description: Information about the checked formula
+-        '404':
+-          description: Data for the given hash cannot be found
+-          schema:
+-            $ref: '#/definitions/problem'
+-        default:
+-          description: Error
+-          schema:
+-            $ref: '#/definitions/problem'
+-      x-monitor: false
+-      x-request-handler:
+-        - get_from_sys:
+-            request:
+-              method: get
+-              uri: /wikimedia.org/sys/mathoid/formula/{hash}
+-              headers: '{{ request.headers }}'
+-
+   /math/render/{format}/{hash}:
+     get:
+       tags: ['Math']
+@@ -122,7 +86,6 @@ paths:
        produces:
          - image/svg+xml
          - application/mathml+xml
@@ -38,7 +185,7 @@ index 3f0ec7f..80e7b15 100644
        parameters:
          - name: format
            in: path
-@@ -96,7 +95,6 @@ paths:
+@@ -132,7 +95,6 @@ paths:
            enum:
              - svg
              - mml
@@ -46,7 +193,7 @@ index 3f0ec7f..80e7b15 100644
          - name: hash
            in: path
            description: The hash string of the previous POST data
-@@ -125,11 +123,6 @@ paths:
+@@ -161,11 +123,6 @@ paths:
              body:
                keyType: string
                valueType: string
@@ -58,3 +205,12 @@ index 3f0ec7f..80e7b15 100644
        x-request-handler:
          - check_storage:
              request:
+@@ -183,7 +140,7 @@ paths:
+               body: '{{ check_storage.body }}'
+         - postdata:
+             request:
+-              uri: /wikimedia.org/sys/mathoid/formula/{request.params.hash}
++              uri: /wikimedia.org/sys/post_data/mathoid.input/{$.request.params.hash}
+         - mathoid:
+             request:
+               method: post
