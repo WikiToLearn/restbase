@@ -1,10 +1,12 @@
 FROM node:5
+ADD ./docker-npm-install.sh /docker-npm-install.sh
+
 ADD ./sources.list /etc/apt/sources.list
-RUN git clone https://github.com/wikimedia/restbase.git && cd restbase && git checkout v0.14.0 && rm -Rfv .git/
+RUN git clone https://github.com/wikimedia/restbase.git && cd restbase && git checkout v0.14.1 && rm -Rfv .git/
 
 WORKDIR restbase
 
-RUN npm install && rm -Rf /tmp/npm-* /root/.npm/
+RUN /docker-npm-install.sh
 
 EXPOSE 7231
 
