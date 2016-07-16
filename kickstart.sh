@@ -13,8 +13,36 @@ default_project: &default_project
     - path: projects/wikitolearn.yaml
       options: &default_options
         table:
+EOF
+if [[ "$CASSANDRA_HOSTS" == "" ]] ; then
+cat <<EOF
           backend: sqlite
           dbname: /db/file.sqlite3
+EOF
+else
+cat <<EOF
+          backend: cassandra
+          hosts:
+EOF
+for CASSANDRA_HOST in $(echo $CASSANDRA_HOSTS | sed 's/,/ /g' )
+do
+cat <<EOF
+            - $CASSANDRA_HOST
+EOF
+done
+cat <<EOF
+          keyspace: system
+          username: cassandra
+          password: cassandra
+          defaultConsistency: one # or 'localQuorum' for production
+          storage_groups:
+            - name: test.group.local
+              domains: /./
+          dbname: test.db.sqlite3
+EOF
+fi
+cat <<EOF
+
           pool_idle_timeout: 20000
           retry_delay: 250
           retry_limit: 10
