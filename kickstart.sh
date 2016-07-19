@@ -36,7 +36,7 @@ cat <<EOF
           password: cassandra
           defaultConsistency: one # or 'localQuorum' for production
           storage_groups:
-            - name: test.group.local
+            - name: wikitolearn
               domains: /./
           dbname: test.db.sqlite3
 EOF
