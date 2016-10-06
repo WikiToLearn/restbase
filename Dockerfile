@@ -1,8 +1,7 @@
 FROM node:5
-ADD ./docker-npm-install.sh /docker-npm-install.sh
+ADD /src/docker-npm-install.sh /docker-npm-install.sh
 
-ADD ./sources.list /etc/apt/sources.list
-RUN git clone https://github.com/wikimedia/restbase.git && cd restbase && git checkout v0.14.1 && rm -Rfv .git/
+RUN git clone https://github.com/wikimedia/restbase.git && cd restbase && git checkout v0.15.2 && rm -Rfv .git/
 
 WORKDIR restbase
 
@@ -13,14 +12,13 @@ EXPOSE 7231
 RUN mkdir /db
 RUN chmod 777 /db
 
-ADD ./wikitolearn.yaml /restbase/projects/
+ADD ./src/restbase/config.yaml /restbase/
 
 
+ADD ./src/restbase/projects/wikitolearn.yaml /restbase/projects/
 
-
-ADD ./kickstart.sh /
-RUN chmod +x /kickstart.sh
-CMD /kickstart.sh
+ADD ./src/docker-entrypoint.sh /
+ENTRYPOINT /docker-entrypoint.sh
 
 
 ADD restbase.patch /tmp/

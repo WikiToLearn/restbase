@@ -1,20 +1,36 @@
 diff --git a/sys/mathoid.js b/sys/mathoid.js
-index ff99830..e94453e 100644
+index ff99830..0d7bc65 100644
 --- a/sys/mathoid.js
 +++ b/sys/mathoid.js
-@@ -7,7 +7,7 @@ var URI = HyperSwitch.URI;
- var HTTPError = HyperSwitch.HTTPError;
+@@ -1,119 +1,57 @@
+ 'use strict';
  
++const P = require('bluebird');
++const HyperSwitch = require('hyperswitch');
++const URI = HyperSwitch.URI;
++const HTTPError = HyperSwitch.HTTPError;
+ 
+-var P = require('bluebird');
+-var HyperSwitch = require('hyperswitch');
+-var URI = HyperSwitch.URI;
+-var HTTPError = HyperSwitch.HTTPError;
++const FORMATS = ['mml', 'svg'];
+ 
++class MathoidService {
++    constructor(options) {
++        this.options = options;
++    }
  
 -var FORMATS = ['mml', 'svg', 'png'];
-+var FORMATS = ['mml', 'svg'];
- 
- 
- function MathoidService(options) {
-@@ -17,58 +17,6 @@ function MathoidService(options) {
- }
- 
- 
+-
+-
+-function MathoidService(options) {
+-
+-    this.options = options;
+-
+-}
+-
+-
 -MathoidService.prototype._invalidateCache = function(hyper, hash) {
 -
 -    var routes = [];
@@ -67,117 +83,329 @@ index ff99830..e94453e 100644
 -};
 -
 -
- MathoidService.prototype.checkInput = function(hyper, req) {
+-MathoidService.prototype.checkInput = function(hyper, req) {
+-
+-    var self = this;
+-    var rp = req.params;
+-    var hash;
+-    var origHash;
+-    var checkRes;
++    checkInput(hyper, req) {
++        const rp = req.params;
++        let hash;
++        let origHash;
++        let checkRes;
  
-     var self = this;
-@@ -130,8 +78,7 @@ MathoidService.prototype.checkInput = function(hyper, req) {
+-    // start by calculating the hash
+-    return hyper.post({
+-        uri: new URI([rp.domain, 'sys', 'post_data', 'mathoid.input', 'hash']),
+-        body: { q: req.body.q, type: rp.type }
+-    }).then(function(res) {
+-        hash = origHash = res.body;
+-        // short-circuit if it's a no-cache request
+-        if (req.headers && /no-cache/.test(req.headers['cache-control'])) {
+-            return P.reject(new HTTPError({ status: 404 }));
+-        }
+-        // check the post storage
+-        return hyper.get({
+-            uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.check', hash])
+-        }).catch({ status: 404 }, function(err) {
+-            // let's try to find an indirection
++        // start by calculating the hash
++        return hyper.post({
++            uri: new URI([rp.domain, 'sys', 'post_data', 'mathoid.input', 'hash']),
++            body: { q: req.body.q, type: rp.type }
++        }).then((res) => {
++            hash = origHash = res.body;
++            // short-circuit if it's a no-cache request
++            if (req.headers && /no-cache/.test(req.headers['cache-control'])) {
++                return P.reject(new HTTPError({ status: 404 }));
++            }
++            // check the post storage
+             return hyper.get({
+-                uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table', hash])
+-            }).then(function(hashRes) {
+-                // we have a normalised version of the formula
+-                hash = hashRes.body;
+-                // grab that version from storage
+-                return hyper.get({
+-                    uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.check', hash])
+-                });
+-            });
+-        });
+-    }).catch({ status: 404 }, function() {
+-        // if we are here, it means this is a new input formula
++                uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.check', hash])
++            }).catch({ status: 404 }, () => // let's try to find an indirection
++                hyper.get({
++                    uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table', hash])
++                }).then((hashRes) => {
++                    // we have a normalised version of the formula
++                    hash = hashRes.body;
++                    // grab that version from storage
++                    return hyper.get({
++                        uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.check', hash])
++                    });
++                }));
++        }).catch({ status: 404 }, () => // if we are here, it means this is a new input formula
+         // so call mathoid
+-        return hyper.post({
+-            uri: self.options.host + '/texvcinfo',
++        hyper.post({
++            uri: `${this.options.host}/texvcinfo`,
+             headers: { 'content-type': 'application/json' },
+             body: {
+                 q: req.body.q,
+                 type: rp.type
+             }
+-        }).then(function(res) {
++        }).then((res) => {
+             checkRes = res;
+             // store the normalised version
+             return hyper.put({
+@@ -124,8 +62,8 @@ MathoidService.prototype.checkInput = function(hyper, req) {
+                     type: rp.type
+                 }
+             });
+-        }).then(function(res) {
+-            var indirectionP = P.resolve();
++        }).then((res) => {
++            let indirectionP = P.resolve();
+             hash = res.body;
              // add the indirection to the hash table if the hashes don't match
              if (hash !== origHash) {
-                 indirectionP = hyper.put({
--                    uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table',
--                        origHash]),
-+                    uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table', origHash]),
-                     headers: { 'content-type': 'text/plain' },
-                     body: hash
-                 });
-@@ -149,7 +96,6 @@ MathoidService.prototype.checkInput = function(hyper, req) {
+@@ -149,89 +87,129 @@ MathoidService.prototype.checkInput = function(hyper, req) {
                      body: checkRes.body
                  }),
                  indirectionP,
 -                self._invalidateCache.bind(self, hyper, hash),
-                 function() {
-                     return checkRes;
-                 }
-@@ -185,19 +131,18 @@ MathoidService.prototype._storeRenders = function(hyper, domain, hash, completeB
-                 completeBody[format].headers, { 'x-resource-location': hash }),
-             body: completeBody[format].body
-         };
-+/*
-         if (format === 'png' && reqObj.body && reqObj.body.type === 'Buffer') {
-             // for png, we need to convert the encoded data manually
-             // because we are receiving it wrapped inside a JSON
-             reqObj.body = new Buffer(reqObj.body.data);
-             completeBody[format].body = reqObj.body;
-         }
-+*/
-         // store the emit Promise
-         reqs[idx] = hyper.put(reqObj);
+-                function() {
+-                    return checkRes;
+-                }
++                this._invalidateCache.bind(this, hyper, hash),
++                () => checkRes
+             );
+-        });
+-    });
++        }));
+ 
+-};
++    }
+ 
++    _storeRenders(hyper, domain, hash, completeBody) {
++        let idx;
++        const len = FORMATS.length;
++        const reqs = new Array(len);
++
++        for (idx = 0; idx < len; idx++) {
++            const format = FORMATS[idx];
++            // ensure that we have a proper response for a given format
++            if (!completeBody[format]
++                    || !completeBody[format].headers
++                    || !completeBody[format].body) {
++                return P.reject(new HTTPError({
++                    status: 500,
++                    body: {
++                        type: 'server_error#empty_response',
++                        description: `Math: missing or malformed response for format ${format}`
++                    }
++                }));
++            }
++            // construct the request object that will be emitted
++            const reqObj = {
++                uri: new URI([domain, 'sys', 'key_value', `mathoid.${format}`, hash]),
++                headers: Object.assign(
++                    completeBody[format].headers, { 'x-resource-location': hash }),
++                body: completeBody[format].body
++            };
++            /*
++            if (format === 'png' && reqObj.body && reqObj.body.type === 'Buffer') {
++                // for png, we need to convert the encoded data manually
++                // because we are receiving it wrapped inside a JSON
++                reqObj.body = new Buffer(reqObj.body.data);
++                completeBody[format].body = reqObj.body;
++            }
++            */
++            // store the emit Promise
++            reqs[idx] = hyper.put(reqObj);
++        }
+ 
+-MathoidService.prototype._storeRenders = function(hyper, domain, hash, completeBody) {
++        // invalidate the cache
++        reqs.push(this._invalidateCache(hyper, hash));
+ 
+-    var idx;
+-    var len = FORMATS.length;
+-    var reqs = new Array(len);
++        // now do them all
++        return P.all(reqs).then(() => completeBody);
+ 
+-    for (idx = 0; idx < len; idx++) {
+-        var format = FORMATS[idx];
+-        // ensure that we have a proper response for a given format
+-        if (!completeBody[format] || !completeBody[format].headers || !completeBody[format].body) {
+-            return P.reject(new HTTPError({
+-                status: 500,
+-                body: {
+-                    type: 'server_error#empty_response',
+-                    description: 'Math: missing or malformed response for format ' + format
+-                }
+-            }));
+-        }
+-        // construct the request object that will be emitted
+-        var reqObj = {
+-            uri: new URI([domain, 'sys', 'key_value', 'mathoid.' + format, hash]),
+-            headers: Object.assign(
+-                completeBody[format].headers, { 'x-resource-location': hash }),
+-            body: completeBody[format].body
+-        };
+-        if (format === 'png' && reqObj.body && reqObj.body.type === 'Buffer') {
+-            // for png, we need to convert the encoded data manually
+-            // because we are receiving it wrapped inside a JSON
+-            reqObj.body = new Buffer(reqObj.body.data);
+-            completeBody[format].body = reqObj.body;
+-        }
+-        // store the emit Promise
+-        reqs[idx] = hyper.put(reqObj);
      }
  
 -    // invalidate the cache
 -    reqs.push(this._invalidateCache(hyper, hash));
--
-     // now do them all
-     return P.all(reqs).then(function() { return completeBody; });
++    requestAndStore(hyper, req) {
++        const rp = req.params;
++        const hash = req.headers['x-resource-location'];
  
-@@ -236,11 +181,6 @@ module.exports = function(options) {
+-    // now do them all
+-    return P.all(reqs).then(function() { return completeBody; });
++        // first ask for all the renders from Mathoid
++        return hyper.post({
++            uri: `${this.options.host}/complete`,
++            headers: { 'content-type': 'application/json' },
++            body: req.body
++        }).then((res) => // now store all of the renders
++        this._storeRenders(hyper, rp.domain, hash, res.body)).then((res) => {
++            // and return a proper response
++            const ret = res[rp.format];
++            ret.status = 200;
++            Object.assign(ret.headers, { 'cache-control': this.options['cache-control'] });
++            return ret;
++        });
+ 
+-};
++    }
+ 
++    _invalidateCache(hyper, hash) {
+ 
+-MathoidService.prototype.requestAndStore = function(hyper, req) {
++        const routes = [];
++        const uri = '//pool.WTL_DOMAIN_NAME/api/rest_v1/media/math/';
+ 
+-    var self = this;
+-    var rp = req.params;
+-    var hash = req.headers['x-resource-location'];
++        routes.push(`${uri}formula/${hash}`);
+ 
+-    // first ask for all the renders from Mathoid
+-    return hyper.post({
+-        uri: self.options.host + '/complete',
+-        headers: { 'content-type': 'application/json' },
+-        body: req.body
+-    }).then(function(res) {
+-        // now store all of the renders
+-        return self._storeRenders(hyper, rp.domain, hash, res.body);
+-    }).then(function(res) {
+-        // and return a proper response
+-        var ret = res[rp.format];
+-        ret.status = 200;
+-        Object.assign(ret.headers, { 'cache-control': self.options['cache-control'] });
+-        return ret;
+-    });
++        FORMATS.forEach((fmt) => {
++            routes.push(`${uri}render/${fmt}/${hash}`);
++        });
+ 
+-};
++        return hyper.post({
++            uri: new URI(['pool.WTL_DOMAIN_NAME', 'sys', 'events', '']),
++            body: routes.map((route) => ({
++                meta: { uri: route }
++            }))
++        }).catch((e) => {
++            hyper.log('warn/bg-updates', e);
++        });
+ 
++    }
++
++    getFormula(hyper, req) {
++        const rp = req.params;
++        let hash = rp.hash;
++        return hyper.get({
++            uri: new URI([rp.domain, 'sys', 'post_data', 'mathoid.input', hash])
++        }).then((res) => {
++            res.headers['x-resource-location'] = hash;
++            return res;
++        }).catch({ status: 404 }, () => // let's try to find an indirection
++            hyper.get({
++                uri: new URI([rp.domain, 'sys', 'key_value', 'mathoid.hash_table', hash])
++            }).then((hashRes) => {
++                // we have a normalised version of the formula
++                hash = hashRes.body;
++                // grab that version from storage
++                return hyper.get({
++                    uri: new URI([rp.domain, 'sys', 'post_data', 'mathoid.input', hash])
++                }).then((res) => {
++                    res.headers['x-resource-location'] = hash;
++                    return res;
++                });
++            }));
++    }
++}
+ 
+-module.exports = function(options) {
++module.exports = (options) => {
+ 
+-    var mathoidSrv = new MathoidService(options);
++    const mathoidSrv = new MathoidService(options);
+ 
      return {
          spec: {
-             paths: {
--                '/formula/{hash}': {
--                    get: {
--                        operationId: 'getFormula'
--                    }
--                },
-                 '/check/{type}': {
-                     post: {
-                         operationId: 'checkInput'
-@@ -254,7 +194,6 @@ module.exports = function(options) {
-             }
-         },
-         operations: {
--            getFormula: mathoidSrv.getFormula.bind(mathoidSrv),
-             checkInput: mathoidSrv.checkInput.bind(mathoidSrv),
-             requestAndStore: mathoidSrv.requestAndStore.bind(mathoidSrv)
-         },
+@@ -272,4 +250,3 @@ module.exports = function(options) {
+     };
+ 
+ };
+-
 diff --git a/v1/mathoid.yaml b/v1/mathoid.yaml
-index ea6a9f8..80e7b15 100644
+index 4ca75b4..0e05230 100644
 --- a/v1/mathoid.yaml
 +++ b/v1/mathoid.yaml
-@@ -71,42 +71,6 @@ paths:
+@@ -50,7 +50,7 @@ paths:
+         - title: Mathoid - check test formula
+           request:
+             params:
+-              domain: wikimedia.org
++              domain: pool.WTL_DOMAIN_NAME
+               type: tex
+             body:
+               q: E=mc^{2}
+@@ -67,7 +67,7 @@ paths:
+         - get_from_sys:
+             request:
+               method: post
+-              uri: /wikimedia.org/sys/mathoid/check/{type}
++              uri: /pool.WTL_DOMAIN_NAME/sys/mathoid/check/{type}
                headers: '{{ request.headers }}'
                body: '{{ request.body }}'
  
--  /math/formula/{hash}:
--    get:
--      tags: ['Math']
--      summary: Get a previously-stored formula
--      description: |
--        Returns the previously-stored formula via `/media/math/check/{type}` for
--        the given hash.
--
--        Stability: [unstable](https://www.mediawiki.org/wiki/API_versioning#unstable).
--      produces:
--        - application/json
--      parameters:
--        - name: hash
--          in: path
--          description: The hash string of the previous POST data
--          type: string
--          required: true
--      responses:
--        '200':
--          description: Information about the checked formula
--        '404':
--          description: Data for the given hash cannot be found
--          schema:
--            $ref: '#/definitions/problem'
--        default:
--          description: Error
--          schema:
--            $ref: '#/definitions/problem'
--      x-monitor: false
--      x-request-handler:
--        - get_from_sys:
--            request:
--              method: get
+@@ -104,7 +104,7 @@ paths:
+         - get_from_sys:
+             request:
+               method: get
 -              uri: /wikimedia.org/sys/mathoid/formula/{hash}
--              headers: '{{ request.headers }}'
--
++              uri: /pool.WTL_DOMAIN_NAME/sys/mathoid/formula/{hash}
+               headers: '{{ request.headers }}'
+ 
    /math/render/{format}/{hash}:
-     get:
-       tags: ['Math']
-@@ -122,7 +86,6 @@ paths:
+@@ -122,7 +122,6 @@ paths:
        produces:
          - image/svg+xml
          - application/mathml+xml
@@ -185,7 +413,7 @@ index ea6a9f8..80e7b15 100644
        parameters:
          - name: format
            in: path
-@@ -132,7 +95,6 @@ paths:
+@@ -132,7 +131,6 @@ paths:
            enum:
              - svg
              - mml
@@ -193,7 +421,18 @@ index ea6a9f8..80e7b15 100644
          - name: hash
            in: path
            description: The hash string of the previous POST data
-@@ -161,11 +123,6 @@ paths:
+@@ -152,25 +150,20 @@ paths:
+       x-monitor: false
+       x-setup-handler:
+         - init_svg:
+-            uri: /wikimedia.org/sys/key_value/mathoid.svg
++            uri: /pool.WTL_DOMAIN_NAME/sys/key_value/mathoid.svg
+             body:
+               keyType: string
+               valueType: string
+         - init_mml:
+-            uri: /wikimedia.org/sys/key_value/mathoid.mml
++            uri: /pool.WTL_DOMAIN_NAME/sys/key_value/mathoid.mml
              body:
                keyType: string
                valueType: string
@@ -205,12 +444,23 @@ index ea6a9f8..80e7b15 100644
        x-request-handler:
          - check_storage:
              request:
-@@ -183,7 +140,7 @@ paths:
+               method: get
+-              uri: /wikimedia.org/sys/key_value/mathoid.{$.request.params.format}/{$.request.params.hash}
++              uri: /pool.WTL_DOMAIN_NAME/sys/key_value/mathoid.{$.request.params.format}/{$.request.params.hash}
+               headers:
+                 cache-control: '{{ cache-control }}'
+             catch:
+@@ -183,11 +176,11 @@ paths:
                body: '{{ check_storage.body }}'
          - postdata:
              request:
 -              uri: /wikimedia.org/sys/mathoid/formula/{request.params.hash}
-+              uri: /wikimedia.org/sys/post_data/mathoid.input/{$.request.params.hash}
++              uri: /pool.WTL_DOMAIN_NAME/sys/mathoid/formula/{request.params.hash}
          - mathoid:
              request:
                method: post
+-              uri: /wikimedia.org/sys/mathoid/render/{request.params.format}
++              uri: /pool.WTL_DOMAIN_NAME/sys/mathoid/render/{request.params.format}
+               headers:
+                 content-type: application/json
+                 x-resource-location: '{{ request.params.hash }}'
