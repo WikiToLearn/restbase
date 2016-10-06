@@ -58,14 +58,6 @@ cat <<EOF
         # 10 days Varnish caching, one day client-side
         purged_cache_control: s-maxage=864000, max-age=86400
 
-wikimedia.org: &wikimedia.org
-  x-modules:
-    - path: projects/wikimedia.org.yaml
-      options:
-        <<: *default_options
-        pageviews:
-          host: https://wikimedia.org/api/rest_v1/metrics
-
 spec_root: &spec_root
   title: "The RESTBase root"
   x-sub-request-filters:
@@ -89,8 +81,6 @@ cat <<EOF
 EOF
   done
 cat <<EOF
-
-    /{domain:wikimedia.org}: *wikimedia.org
 
     # A robots.txt to make sure that the content isn't indexed.
     /robots.txt:
@@ -127,5 +117,6 @@ EOF
 
 } > /restbase/config.yaml
 
+sed -i 's/WTL_DOMAIN_NAME/'$WTL_DOMAIN_NAME'/g' /restbase/v1/mathoid.yaml
 
 exec node server

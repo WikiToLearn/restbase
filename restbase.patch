@@ -131,10 +131,24 @@ index ff99830..e94453e 100644
              requestAndStore: mathoidSrv.requestAndStore.bind(mathoidSrv)
          },
 diff --git a/v1/mathoid.yaml b/v1/mathoid.yaml
-index ea6a9f8..80e7b15 100644
+index ea6a9f8..e071dc0 100644
 --- a/v1/mathoid.yaml
 +++ b/v1/mathoid.yaml
-@@ -71,42 +71,6 @@ paths:
+@@ -50,7 +50,7 @@ paths:
+         - title: Mathoid - check test formula
+           request:
+             params:
+-              domain: wikimedia.org
++              domain: pool.WTL_DOMAIN_NAME
+               type: tex
+             body:
+               q: E=mc^{2}
+@@ -67,46 +67,10 @@ paths:
+         - get_from_sys:
+             request:
+               method: post
+-              uri: /wikimedia.org/sys/mathoid/check/{type}
++              uri: /pool.WTL_DOMAIN_NAME/sys/mathoid/check/{type}
                headers: '{{ request.headers }}'
                body: '{{ request.body }}'
  
@@ -193,7 +207,18 @@ index ea6a9f8..80e7b15 100644
          - name: hash
            in: path
            description: The hash string of the previous POST data
-@@ -161,11 +123,6 @@ paths:
+@@ -152,25 +114,20 @@ paths:
+       x-monitor: false
+       x-setup-handler:
+         - init_svg:
+-            uri: /wikimedia.org/sys/key_value/mathoid.svg
++            uri: /pool.WTL_DOMAIN_NAME/sys/key_value/mathoid.svg
+             body:
+               keyType: string
+               valueType: string
+         - init_mml:
+-            uri: /wikimedia.org/sys/key_value/mathoid.mml
++            uri: /pool.WTL_DOMAIN_NAME/sys/key_value/mathoid.mml
              body:
                keyType: string
                valueType: string
@@ -205,12 +230,23 @@ index ea6a9f8..80e7b15 100644
        x-request-handler:
          - check_storage:
              request:
-@@ -183,7 +140,7 @@ paths:
+               method: get
+-              uri: /wikimedia.org/sys/key_value/mathoid.{$.request.params.format}/{$.request.params.hash}
++              uri: /pool.WTL_DOMAIN_NAME/sys/key_value/mathoid.{$.request.params.format}/{$.request.params.hash}
+               headers:
+                 cache-control: '{{ cache-control }}'
+             catch:
+@@ -183,11 +140,11 @@ paths:
                body: '{{ check_storage.body }}'
          - postdata:
              request:
 -              uri: /wikimedia.org/sys/mathoid/formula/{request.params.hash}
-+              uri: /wikimedia.org/sys/post_data/mathoid.input/{$.request.params.hash}
++              uri: /pool.WTL_DOMAIN_NAME/sys/post_data/mathoid.input/{$.request.params.hash}
          - mathoid:
              request:
                method: post
+-              uri: /wikimedia.org/sys/mathoid/render/{request.params.format}
++              uri: /pool.WTL_DOMAIN_NAME/sys/mathoid/render/{request.params.format}
+               headers:
+                 content-type: application/json
+                 x-resource-location: '{{ request.params.hash }}'
