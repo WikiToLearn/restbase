@@ -1,11 +1,11 @@
 paths:
   /{api:v1}:
     x-modules:
+        # swagger options, overriding the shared ones from the merged specs (?)
       - spec:
           info:
             version: 1.0.0-beta
             title: WikiToLearn REST API
-            description: Welcome to WikiToLearn RESTBase API.
           x-route-filters:
             - path: ./lib/normalize_title_filter.js
               options:
@@ -16,29 +16,35 @@ paths:
                 - path: v1/content.yaml
                   options:
                     purged_cache_control: '{{options.purged_cache_control}}'
+                - path: v1/mobileapps.yaml
+                  options: '{{merge({"response_cache_control": options.purged_cache_control},
+                                options.mobileapps)}}'
+                - path: v1/graphoid.yaml
+                  options: '{{options.graphoid}}'
+                - path: v1/summary.js
+                  options:
+                    response_cache_control: '{{options.purged_cache_control}}'
+                - path: v1/related.js
+                  options: '{{options.related}}'
+            /transform:
+              x-modules:
+                - path: v1/transform.yaml
             /media:
               x-modules:
                 - path: v1/mathoid.yaml
                   options: '{{options.mathoid}}'
-            /transform:
-              x-modules:
-                - path: v1/transform.yaml
         options: '{{options}}'
 
   /{api:sys}:
     x-modules:
       - spec:
           paths:
-            /mathoid:
-              x-modules:
-                - path: sys/mathoid.js
-                  options: '{{options.mathoid}}'
-            /table:
+            /table: &sys_table
               x-modules:
                 - path: sys/table.js
                   options:
                     conf: '{{options.table}}'
-            /key_value:
+            /key_value: &sys_key_value
               x-modules:
                 - path: sys/key_value.js
             /key_rev_value:
@@ -56,11 +62,7 @@ paths:
             /action:
               x-modules:
                 - path: sys/action.js
-                  options: '{{options.action}}'
-            /events:
-              x-modules:
-                - path: sys/events.js
-                  options: '{{merge({"skip_updates": options.skip_updates}, options.events)}}'
+                  options: "{{options.action}}"
             /page_save:
               x-modules:
                 - path: sys/page_save.js
@@ -70,4 +72,13 @@ paths:
                   options:
                     parsoidHost: '{{options.parsoid.host}}'
                     response_cache_control: '{{options.purged_cache_control}}'
+            /mobileapps:
+              x-modules:
+                - path: sys/mobileapps.yaml
+                  options: '{{merge({"response_cache_control": options.purged_cache_control},
+                                options.mobileapps)}}'
+            /events:
+              x-modules:
+                - path: sys/events.js
+                  options: '{{options.events}}'
         options: '{{options}}'
