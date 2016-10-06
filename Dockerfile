@@ -12,11 +12,11 @@ EXPOSE 7231
 RUN mkdir /db
 RUN chmod 777 /db
 
-ADD ./src/restbase/config.yaml /restbase/
 
 
 ADD ./src/restbase/projects/wikitolearn.yaml /restbase/projects/
 
+ADD ./src/make-config-yaml.sh /
 ADD ./src/docker-entrypoint.sh /
 ENTRYPOINT /docker-entrypoint.sh
 
