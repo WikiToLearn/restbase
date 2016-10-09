@@ -3,6 +3,13 @@
 # list of supported subdomain
 langs="it en de es fr pt sv ca meta pool"
 
+export SALT="secret"
+if [[ "$NUM_WORKERS" == "" ]]
+then
+    echo "Default num_workers = 4"
+    NUM_WORKERS=4
+fi
+
 {
 cat <<EOF
 
@@ -34,7 +41,7 @@ cat <<EOF
           password: cassandra
           defaultConsistency: one # or 'localQuorum' for production
           storage_groups:
-            - name: wikitolearn
+            - name: $WTL_DOMAIN_NAME
               domains: /./
           dbname: test.db.sqlite3
 EOF
@@ -105,7 +112,7 @@ services:
     conf:
       port: 7231
       spec: *spec_root
-      salt: secret
+      salt: $SALT
       default_page_size: 125
       user_agent: RESTBase
 
@@ -113,10 +120,12 @@ logging:
   name: restbase
   level: debug
 
+num_workers: $NUM_WORKERS
+
 EOF
 
-} > /restbase/config.yaml
+} > /opt/config.yaml
 
-sed -i 's/WTL_DOMAIN_NAME/'$WTL_DOMAIN_NAME'/g' /restbase/v1/mathoid.yaml
+sed -i 's/WTL_DOMAIN_NAME/'$WTL_DOMAIN_NAME'/g' /opt/v1/mathoid.yaml
 
 exec node server
