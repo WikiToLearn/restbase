@@ -121,6 +121,7 @@ logging:
   level: debug
 
 num_workers: $NUM_WORKERS
+version: 2 # this MUST BE monotonically increasing
 
 EOF
 
