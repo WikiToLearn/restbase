@@ -54,6 +54,7 @@ cat <<EOF
           show_sql: false
         action:
           apiUriTemplate: "{{'http://{domain}/api.php'}}"
+          baseUriTemplate: "{{'http://localhost:7231/{domain}/v1/'}}"
         parsoid:
           host: http://parsoid:8000
         mathoid:
@@ -121,7 +122,7 @@ logging:
   level: debug
 
 num_workers: $NUM_WORKERS
-version: 2 # this MUST BE monotonically increasing
+version: 3 # this MUST BE monotonically increasing
 
 EOF
 
