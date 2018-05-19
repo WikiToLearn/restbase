@@ -1,48 +1,36 @@
 paths:
   /{api:v1}:
     x-modules:
-        # swagger options, overriding the shared ones from the merged specs (?)
       - spec:
           info:
-            version: 1.0.0-beta
+            version: 1.0.0
             title: WikiToLearn REST API
+            description: Welcome to RESTBase API.
           x-route-filters:
             - path: ./lib/normalize_title_filter.js
               options:
                 redirect_cache_control: '{{options.purged_cache_control}}'
           paths:
-            /page:
-              x-modules:
-                - path: v1/content.yaml
-                  options:
-                    purged_cache_control: '{{options.purged_cache_control}}'
-                - path: v1/mobileapps.yaml
-                  options: '{{merge({"response_cache_control": options.purged_cache_control},
-                                options.mobileapps)}}'
-                - path: v1/graphoid.yaml
-                  options: '{{options.graphoid}}'
-                - path: v1/summary.js
-                  options:
-                    response_cache_control: '{{options.purged_cache_control}}'
-                - path: v1/related.js
-                  options: '{{options.related}}'
-            /transform:
-              x-modules:
-                - path: v1/transform.yaml
             /media:
               x-modules:
                 - path: v1/mathoid.yaml
                   options: '{{options.mathoid}}'
+                - path: v1/common_schemas.yaml # Doesn't really matter where to mount it.
+            /page:
+              x-modules:
+                - path: v1/content.yaml
+                  options:
+                    response_cache_control: '{{options.purged_cache_control}}'
+                - path: v1/common_schemas.yaml # Doesn't really matter where to mount it.
+            /transform:
+              x-modules:
+                - path: v1/transform.yaml
         options: '{{options}}'
 
   /{api:sys}:
     x-modules:
       - spec:
           paths:
-            /mathoid:
-              x-modules:
-                - path: sys/mathoid.js
-                  options: '{{options.mathoid}}'
             /table: &sys_table
               x-modules:
                 - path: sys/table.js
@@ -54,19 +42,16 @@ paths:
             /key_rev_value:
               x-modules:
                 - path: sys/key_rev_value.js
-            /key_rev_latest_value:
-              x-modules:
-                - path: sys/key_rev_latest_value.js
             /page_revisions:
               x-modules:
                 - path: sys/page_revisions.js
-            /post_data: &sys_post_data
+            /post_data:
               x-modules:
                 - path: sys/post_data.js
             /action:
               x-modules:
                 - path: sys/action.js
-                  options: "{{options.action}}"
+                  options: '{{options.action}}'
             /page_save:
               x-modules:
                 - path: sys/page_save.js
@@ -76,13 +61,30 @@ paths:
                   options:
                     parsoidHost: '{{options.parsoid.host}}'
                     response_cache_control: '{{options.purged_cache_control}}'
-            /mobileapps:
+                    grace_ttl: '{{default(options.parsoid.grace_ttl, 86400)}}'
+            /mathoid:
               x-modules:
-                - path: sys/mobileapps.yaml
-                  options: '{{merge({"response_cache_control": options.purged_cache_control},
-                                options.mobileapps)}}'
-            /events:
+                - path: sys/mathoid.js
+                  options: '{{options.mathoid}}'
+            /media:
               x-modules:
-                - path: sys/events.js
-                  options: '{{options.events}}'
+                - path: v1/mathoid.yaml
+                  options: '{{options.mathoid}}'
+                - path: v1/common_schemas.yaml # Doesn't really matter where to mount it.
+            /parsoid_bucket:
+              x-modules:
+                - path: sys/multi_content_bucket.js
+                  options:
+                    grace_ttl: '{{default(options.parsoid.grace_ttl, 86400)}}'
+                    renew_expiring: true
+                    delete_probability: '{{default(options.parsoid.delete_probability, 1)}}'
+                    table_name_prefix: parsoid_ng
+                    main_content_type:
+                      name: html
+                      value_type: blob
+                    dependent_content_types:
+                      - name: data-parsoid
+                        value_type: json
+                      - name: section-offsets
+                        value_type: json
         options: '{{options}}'
