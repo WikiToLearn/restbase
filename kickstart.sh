@@ -127,9 +127,9 @@ version: 3 # this MUST BE monotonically increasing
 
 EOF
 
-} > /opt/config.yaml
+} > /opt/restbase/config.yaml
 
 
-sed -i 's/wikimedia.org/pool.'$WTL_DOMAIN_NAME'/g' /opt/v1/mathoid.yaml
+sed -i 's/wikimedia.org/pool.'$WTL_DOMAIN_NAME'/g' /opt/restbase/v1/mathoid.yaml
 
 exec node server
